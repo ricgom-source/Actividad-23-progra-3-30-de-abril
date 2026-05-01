@@ -402,11 +402,11 @@ namespace Actividad_23_progra_3_30_de_abril
             public void MostrarJunior()
 
             {
-                Console.WriteLine($"Carnet de Junior: {carnet}");
+                Console.WriteLine($"Carnet de Junior: {Carnet}");
 
                 Console.WriteLine();
 
-                Console.WriteLine($"Area de trabajo actual de Junior: {area}");
+                Console.WriteLine($"Area de trabajo actual de Junior: {Area}");
 
 
 
@@ -424,6 +424,7 @@ namespace Actividad_23_progra_3_30_de_abril
 
             Dictionary<string,Junior> Comunes = new Dictionary<string,Junior>();
 
+            bool correcto;
 
             do
 
@@ -457,257 +458,281 @@ namespace Actividad_23_progra_3_30_de_abril
 
                 Console.Write("Ingrese la opción que desea utilizar:_ ");
 
-                opcion = int.Parse(Console.ReadLine());
+                correcto = int.TryParse(Console.ReadLine(), out opcion);
 
-                switch (opcion)
+                if (correcto != true)
 
                 {
-                    case 1:
+                    Console.WriteLine();
 
-                        Console.Clear();
+                    Console.WriteLine("No se ha ingresado una opcion valida");
 
-                        Console.WriteLine("==BIENVENIDO A LA OPCION REGISTRAR ADMINISTRADOR==");
+                    Console.WriteLine();
 
-                        Console.WriteLine();
+                    Console.WriteLine("Presione enter para intentarlo nuevamente");
 
-                        Console.Write("Ingrese la clave de acceso del nuevo administrador:_ ");
+                    Console.WriteLine();
 
-                        string clave = Console.ReadLine();
+                    Console.ReadKey();
 
-                        string contraseña = clave;
+                    Console.Clear();
 
-                        Console.WriteLine();
+                }
 
-                        Console.Write("Ingrese el nombre de usuario del administrador:_ ");
+                else if (correcto == true)
+                {
 
-                        string nombre = Console.ReadLine();
 
-                        Console.WriteLine();
 
-                        Console.Write("Ingrese la dirección Ip: ");
+                    switch (opcion)
 
-                        string ip = Console.ReadLine();
+                    {
+                        case 1:
 
-                        Console.WriteLine();
+                            Console.Clear();
 
-                        Console.Write("Ingrese nivel de administrador (bajo,medio,alto):_ ");
-
-                        string nivel = Console.ReadLine();
-
-                        Console.WriteLine();
-
-                        Console.Write("Ingrese el estado del administrador (Activo/Inactivo):_ ");
-
-                        string estado = Console.ReadLine();
-
-                        Console.WriteLine();
-
-                        Console.Write("Ingrese el rango del administrador (S,A,B,C,):_ ");
-
-                        string rango = Console.ReadLine();
-
-                        Console.WriteLine();
-
-                        Console.WriteLine("Presione enter para terminar el registro");
-
-                        Admin admini = new Admin(nombre, ip, nivel, estado, rango, contraseña);
-
-                        Administradores.Add(clave, admini);
-
-                        Console.ReadKey();
-
-                        Console.Clear();
-
-                        break;
-
-                    case 2:
-
-                        Console.Clear();
-
-                        Console.WriteLine("==BIENVENIDO A LA OPCION REGISTRAR USUARIO JUNIOR==");
-
-                        Console.WriteLine();
-
-                        Console.Write("Ingrese el No. de carnet del usuario Junior:_ ");
-
-                        string identificador = Console.ReadLine();
-
-                        string carnet = identificador;
-
-                        Console.WriteLine();
-
-                        Console.Write("Ingrese el nombre de usuario del usuario Junior:_ ");
-
-                        string nombrej = Console.ReadLine();
-
-                        Console.WriteLine();
-
-                        Console.Write("Ingrese la dirección Ip: ");
-
-                        string ipj = Console.ReadLine();
-
-                        Console.WriteLine();
-
-                        Console.Write("Ingrese nivel de usuario Junior (bajo,medio,alto):_ ");
-
-                        string nivelj = Console.ReadLine();
-
-                        Console.WriteLine();
-
-                        Console.Write("Ingrese el estado del usuario Junior (Activo/Inactivo):_ ");
-
-                        string estadoj = Console.ReadLine();
-
-                        Console.WriteLine();
-
-                        Console.Write("Ingrese el area de trabajo actual del usuario Junior:_ ");
-
-                        string area = Console.ReadLine();
-
-                        Console.WriteLine();
-
-                        Console.WriteLine("Presione enter para terminar el registro");
-
-                        Junior j = new Junior(nombrej, ipj, nivelj, estadoj, area, identificador);
-
-                        Comunes.Add(identificador, j);
-
-                        Console.ReadKey();
-
-                        Console.Clear();
-
-                        break;
-
-
-                    case 3:
-
-                        Console.Clear();
-
-                        Console.WriteLine("==BIENVENIDO A LA OPCION DE MOSTRAR INFORMACION DE USUARIOS PRIVILEGIADOS==");
-
-                        Console.WriteLine();
-
-                        Console.Write("Ingrese la contraseña de acceso del administrador del cual quiere ver la info:_ ");
-
-                        string poscontra = Console.ReadLine();
-
-                        if (Administradores.ContainsKey(poscontra))
-
-                        {
-                            Console.WriteLine();
-
-                            Console.WriteLine("Acceso consedido");
+                            Console.WriteLine("==BIENVENIDO A LA OPCION REGISTRAR ADMINISTRADOR==");
 
                             Console.WriteLine();
 
-                            Console.WriteLine($"La info del administrador con clave de acceso {poscontra} es la siguiente:");
+                            Console.Write("Ingrese la clave de acceso del nuevo administrador:_ ");
+
+                            string clave = Console.ReadLine();
+
+                            string contraseña = clave;
 
                             Console.WriteLine();
 
-                            Administradores[poscontra].MostrarUsuario();
+                            Console.Write("Ingrese el nombre de usuario del administrador:_ ");
+
+                            string nombre = Console.ReadLine();
 
                             Console.WriteLine();
 
-                            Administradores[poscontra].MostrarAdmin();
+                            Console.Write("Ingrese la dirección Ip: ");
 
-
-                        }
-
-                        else
-
-                        {
+                            string ip = Console.ReadLine();
 
                             Console.WriteLine();
 
-                            Console.WriteLine("Acceso denegado, la contraseña de acceso ingresada no es válida");
+                            Console.Write("Ingrese nivel de administrador (bajo,medio,alto):_ ");
 
-                        }
-
-                        Console.WriteLine();
-
-                        Console.WriteLine("Presione enter para cerrar esta ventana");
-
-                        Console.ReadKey();
-
-                        Console.Clear();
-
-                        break;
-
-                    case 4:
-
-                        Console.Clear();
-
-                        Console.WriteLine("==BIENVENIDO A LA OPCION DE MOSTRAR INFORMACION DE USUARIOS JUNIOR==");
-
-                        Console.WriteLine();
-
-                        Console.Write("Ingrese el No. de carnet del usuario junior del cual quiere ver la info:_ ");
-
-                        string poscarnet = Console.ReadLine();
-
-                        if (Comunes.ContainsKey(poscarnet))
-
-                        {
-                            Console.WriteLine();
-
-                            Console.WriteLine("Acceso consedido");
+                            string nivel = Console.ReadLine();
 
                             Console.WriteLine();
 
-                            Console.WriteLine($"La info del usuario junior con No. de carnet {poscarnet} es la siguiente:");
+                            Console.Write("Ingrese el estado del administrador (Activo/Inactivo):_ ");
+
+                            string estado = Console.ReadLine();
 
                             Console.WriteLine();
 
-                            Comunes[poscarnet].MostrarUsuario();
+                            Console.Write("Ingrese el rango del administrador (S,A,B,C,):_ ");
+
+                            string rango = Console.ReadLine();
 
                             Console.WriteLine();
 
-                            Comunes[poscarnet].MostrarJunior();
+                            Console.WriteLine("Presione enter para terminar el registro");
 
+                            Admin admini = new Admin(nombre, ip, nivel, estado, rango, contraseña);
 
-                        }
+                            Administradores.Add(clave, admini);
 
-                        else
+                            Console.ReadKey();
 
-                        {
+                            Console.Clear();
+
+                            break;
+
+                        case 2:
+
+                            Console.Clear();
+
+                            Console.WriteLine("==BIENVENIDO A LA OPCION REGISTRAR USUARIO JUNIOR==");
 
                             Console.WriteLine();
 
-                            Console.WriteLine("Acceso denegado, el No. de carnet ingresado no es valido");
+                            Console.Write("Ingrese el No. de carnet del usuario Junior:_ ");
 
-                        }
+                            string identificador = Console.ReadLine();
 
-                        Console.WriteLine();
+                            string carnet = identificador;
 
-                        Console.WriteLine("Presione enter para cerrar esta ventana");
+                            Console.WriteLine();
 
-                        Console.ReadKey();
+                            Console.Write("Ingrese el nombre de usuario del usuario Junior:_ ");
 
-                        Console.Clear();
+                            string nombrej = Console.ReadLine();
 
-                        break;
+                            Console.WriteLine();
 
-                    case 5:
+                            Console.Write("Ingrese la dirección Ip: ");
 
-                        Console.Clear();
+                            string ipj = Console.ReadLine();
 
-                        Console.WriteLine("Usted ha salido del menu :3");
+                            Console.WriteLine();
 
-                        break;
+                            Console.Write("Ingrese nivel de usuario Junior (bajo,medio,alto):_ ");
 
-                    default:
+                            string nivelj = Console.ReadLine();
 
-                        Console.Clear();
+                            Console.WriteLine();
 
-                        Console.WriteLine("Usted no ha ingresado una opción válida");
+                            Console.Write("Ingrese el estado del usuario Junior (Activo/Inactivo):_ ");
 
-                        Console.ReadKey();
+                            string estadoj = Console.ReadLine();
 
-                        Console.Clear();
+                            Console.WriteLine();
 
-                        break;
+                            Console.Write("Ingrese el area de trabajo actual del usuario Junior:_ ");
+
+                            string area = Console.ReadLine();
+
+                            Console.WriteLine();
+
+                            Console.WriteLine("Presione enter para terminar el registro");
+
+                            Junior j = new Junior(nombrej, ipj, nivelj, estadoj, identificador, area);
+
+                            Comunes.Add(identificador, j);
+
+                            Console.ReadKey();
+
+                            Console.Clear();
+
+                            break;
 
 
+                        case 3:
+
+                            Console.Clear();
+
+                            Console.WriteLine("==BIENVENIDO A LA OPCION DE MOSTRAR INFORMACION DE USUARIOS PRIVILEGIADOS==");
+
+                            Console.WriteLine();
+
+                            Console.Write("Ingrese la contraseña de acceso del administrador del cual quiere ver la info:_ ");
+
+                            string poscontra = Console.ReadLine();
+
+                            if (Administradores.ContainsKey(poscontra))
+
+                            {
+                                Console.WriteLine();
+
+                                Console.WriteLine("Acceso consedido");
+
+                                Console.WriteLine();
+
+                                Console.WriteLine($"La info del administrador con clave de acceso {poscontra} es la siguiente:");
+
+                                Console.WriteLine();
+
+                                Administradores[poscontra].MostrarUsuario();
+
+                                Console.WriteLine();
+
+                                Administradores[poscontra].MostrarAdmin();
+
+
+                            }
+
+                            else
+
+                            {
+
+                                Console.WriteLine();
+
+                                Console.WriteLine("Acceso denegado, la contraseña de acceso ingresada no es válida");
+
+                            }
+
+                            Console.WriteLine();
+
+                            Console.WriteLine("Presione enter para cerrar esta ventana");
+
+                            Console.ReadKey();
+
+                            Console.Clear();
+
+                            break;
+
+                        case 4:
+
+                            Console.Clear();
+
+                            Console.WriteLine("==BIENVENIDO A LA OPCION DE MOSTRAR INFORMACION DE USUARIOS JUNIOR==");
+
+                            Console.WriteLine();
+
+                            Console.Write("Ingrese el No. de carnet del usuario junior del cual quiere ver la info:_ ");
+
+                            string poscarnet = Console.ReadLine();
+
+                            if (Comunes.ContainsKey(poscarnet))
+
+                            {
+                                Console.WriteLine();
+
+                                Console.WriteLine("Acceso consedido");
+
+                                Console.WriteLine();
+
+                                Console.WriteLine($"La info del usuario junior con No. de carnet {poscarnet} es la siguiente:");
+
+                                Console.WriteLine();
+
+                                Comunes[poscarnet].MostrarUsuario();
+
+                                Console.WriteLine();
+
+                                Comunes[poscarnet].MostrarJunior();
+
+
+                            }
+
+                            else
+
+                            {
+
+                                Console.WriteLine();
+
+                                Console.WriteLine("Acceso denegado, el No. de carnet ingresado no es valido");
+
+                            }
+
+                            Console.WriteLine();
+
+                            Console.WriteLine("Presione enter para cerrar esta ventana");
+
+                            Console.ReadKey();
+
+                            Console.Clear();
+
+                            break;
+
+                        case 5:
+
+                            Console.Clear();
+
+                            Console.WriteLine("Usted ha salido del menu :3");
+
+                            break;
+
+                        default:
+
+                            Console.Clear();
+
+                            Console.WriteLine("Usted no ha ingresado una opción válida");
+
+                            Console.ReadKey();
+
+                            Console.Clear();
+
+                            break;
+
+                    }
                 }
 
             }
