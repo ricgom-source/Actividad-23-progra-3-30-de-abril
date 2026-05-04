@@ -480,9 +480,8 @@ namespace Actividad_23_progra_3_30_de_abril
                 }
 
                 else if (correcto == true)
+
                 {
-
-
 
                     switch (opcion)
 
